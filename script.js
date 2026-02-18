@@ -1,22 +1,18 @@
-// Get all price elements
 let prices = document.querySelectorAll(".prices");
 
 let total = 0;
 
-// Calculate sum dynamically
-prices.forEach(function(price) {
-    total += Number(price.textContent);
+prices.forEach(price => {
+    total += parseFloat(price.innerText);
 });
 
-// Create new row
-let table = document.getElementById("grocery-table");
+let table = document.querySelector("table");
+
 let newRow = document.createElement("tr");
 let newCell = document.createElement("td");
 
-// Single cell spanning both columns
-newCell.colSpan = 2;
-newCell.textContent = "Total Price: " + total;
+newCell.colSpan = 2;   // single cell
+newCell.innerText = total;  // ONLY total number
 
-// Append elements
 newRow.appendChild(newCell);
 table.appendChild(newRow);
