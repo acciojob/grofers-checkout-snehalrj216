@@ -1,11 +1,15 @@
 function calculateTotal() {
-  const prices = document.querySelectorAll(".prices");
+  // Get all price elements using class name
+  const priceElements = document.querySelectorAll(".prices");
 
   let total = 0;
 
-  prices.forEach(price => {
-    total += parseInt(price.innerText) || 0;
+  // Loop through each price
+  priceElements.forEach(el => {
+    // Convert text to number and add
+    total += Number(el.innerText) || 0;
   });
 
+  // Display result
   document.getElementById("ans").innerText = total;
 }
