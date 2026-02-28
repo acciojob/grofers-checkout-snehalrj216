@@ -1,18 +1,24 @@
-let prices = document.querySelectorAll(".prices");
+// Get all price elements
+const prices = document.querySelectorAll(".prices");
 
 let total = 0;
 
+// Loop through prices and calculate sum
 prices.forEach(price => {
-    total += parseFloat(price.innerText);
+  total += Number(price.innerText);
 });
 
-let table = document.querySelector("table");
+// Create new row
+const table = document.querySelector("table");
+const newRow = document.createElement("tr");
 
-let newRow = document.createElement("tr");
-let newCell = document.createElement("td");
+// Create new cell
+const newCell = document.createElement("td");
+newCell.colSpan = 2;   // span across columns
+newCell.innerText = total;
 
-newCell.colSpan = 2;   // single cell
-newCell.innerText = total;  // ONLY total number
-
+// Append cell to row
 newRow.appendChild(newCell);
+
+// Append row to table
 table.appendChild(newRow);
