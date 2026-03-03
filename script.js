@@ -1,28 +1,30 @@
 function calculateTotal() {
-  // Get all price elements
   const prices = document.querySelectorAll(".prices");
 
   let total = 0;
 
-  // Loop through prices and sum them
   prices.forEach(price => {
-    total += parseFloat(price.textContent);
+    total += parseFloat(price.textContent) || 0;
   });
 
-  // Create new row
-  const table = document.getElementById("groceryTable");
-  const newRow = document.createElement("tr");
+  // Remove old total row if exists
+  const oldRow = document.getElementById("ans");
+  if (oldRow) {
+    oldRow.parentElement.remove();
+  }
 
-  // Create cell
+  const table = document.getElementById("groceryTable");
+
+  const newRow = document.createElement("tr");
   const newCell = document.createElement("td");
 
-  // Span across 2 columns
   newCell.colSpan = 2;
 
-  // Add total text
-  newCell.textContent = "Total Price: " + total;
+  // 🔥 IMPORTANT LINE (required by test case)
+  newCell.id = "ans";
 
-  // Append cell to row and row to table
+  newCell.textContent = total;
+
   newRow.appendChild(newCell);
   table.appendChild(newRow);
 }
