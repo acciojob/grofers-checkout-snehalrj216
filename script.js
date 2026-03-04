@@ -4,27 +4,25 @@ function calculateTotal() {
   let total = 0;
 
   prices.forEach(price => {
-    total += parseFloat(price.textContent) || 0;
+    total += Number(price.innerText);
   });
-
-  // Remove old total row if exists
-  const oldRow = document.getElementById("ans");
-  if (oldRow) {
-    oldRow.parentElement.remove();
-  }
 
   const table = document.getElementById("groceryTable");
 
-  const newRow = document.createElement("tr");
-  const newCell = document.createElement("td");
+  // Remove previous total row if exists
+  const existing = document.getElementById("ans");
+  if (existing) {
+    existing.parentElement.remove();
+  }
 
-  newCell.colSpan = 2;
+  // Create new row
+  const row = document.createElement("tr");
 
-  // 🔥 IMPORTANT LINE (required by test case)
-  newCell.id = "ans";
+  const cell = document.createElement("td");
+  cell.colSpan = 2;
+  cell.id = "ans";
+  cell.innerText = total;
 
-  newCell.textContent = total;
-
-  newRow.appendChild(newCell);
-  table.appendChild(newRow);
+  row.appendChild(cell);
+  table.appendChild(row);
 }
